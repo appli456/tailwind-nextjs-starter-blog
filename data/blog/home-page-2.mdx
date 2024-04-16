@@ -1,0 +1,31 @@
+---
+title: '某公司官网项目，项目实记(2)——技术选型'
+date: '2024-04-15'
+lastmod: '2024-04-15'
+tags: ['vue', 'nuxt-js', 'guide', 'feature']
+draft: false
+summary: '基于Vue与Nuxt实现某公司官网'
+images: []
+---
+
+## 开篇
+本文主要讲解此次项目的技术选型与模块划分，主要分为“两大应用，七个模块”来构建整套应用程序
+
+<TOCInline toc={props.toc} exclude="开篇" />
+
+## 应用分割
+由于官网项目包含两个应用，这两个应用虽然存在一定共性，有部分模块可以共用，
+但是实际并非需要一起部署与编译的应用，所以在这里，我们将官网与管理平台分割成了两个应用，
+由于二者之间存在需要共同使用的模块，例如文章的预览，数据结构的类型等，所以这里经过商讨，
+我们将项目的结构改成了Monorepo[^1]的方式，这样对于每个应用而言，他们都可以独立编译与部署，
+同时对于开发而言，只需要在一个项目中就可以同时启动两个应用，方便调试与修改。
+
+<div style={{ textAlign: 'center' }}>
+![application-split](/static/images/home-page-2/application-split.drawio.png)
+Monorepo架构图
+</div>
+
+由于早期NX的Vue支持并不是很好，所以这边使用了Vercel的Turborepo来管理
+
+## 引用
+[^1]: Monorepo架构介绍 https://monorepo.tools/
